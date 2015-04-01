@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Celluloid::IO::TCPSocket do
+RSpec.describe Celluloid::IO::TCPSocket do
   let(:payload) { 'ohai' }
 
   context "inside Celluloid::IO" do
@@ -23,7 +21,7 @@ describe Celluloid::IO::TCPSocket do
           thread = Thread.new { server.accept }
 
           value = within_io_actor { Celluloid::IO::TCPSocket.open(example_addr, example_port) { true } }
-          expect(value).to be_true
+          expect(value).to be(true)
           server.close
           thread.terminate
         end
