@@ -24,7 +24,6 @@ describe Celluloid::IO::TCPSocket do
 
           value = within_io_actor { Celluloid::IO::TCPSocket.open(example_addr, example_port) { true } }
           expect(value).to be_true
-
           server.close
           thread.terminate
         end
@@ -47,7 +46,7 @@ describe Celluloid::IO::TCPSocket do
 
     it "should be evented" do
       with_connected_sockets do |subject|
-        expect(within_io_actor { Celluloid::IO.evented? }).to be_true
+        expect(within_io_actor { Celluloid::IO.evented? }).to be_truthy
       end
     end
 
@@ -124,7 +123,7 @@ describe Celluloid::IO::TCPSocket do
             within_io_actor {
               subject.read(1)
               Celluloid.timeout(0.5) {
-                expect(subject.eof?).to be_false
+                expect(subject.eof?).to be_falsey
               }
             }
           }.to raise_error(Celluloid::Task::TimeoutError)
