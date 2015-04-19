@@ -40,6 +40,11 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.disable_monkey_patching!
 
+  config.mock_with :rspec do |mocks|
+    mocks.verify_doubled_constant_names = true
+    mocks.verify_partial_doubles = true
+  end
+
   config.before do
     Celluloid.logger = logger
     Celluloid.shutdown
@@ -53,6 +58,9 @@ RSpec.configure do |config|
     @fake_logger = Specs::FakeLogger.new(Celluloid.logger, example.description)
     stub_const('Celluloid::Internals::Logger', @fake_logger)
   end
+
+  config.filter_gems_from_backtrace(*%w(rspec-expectations rspec-core rspec-mocks rspec-log_split rubysl-thread rubysl-timeout))
+
 end
 
 class ExampleActor
