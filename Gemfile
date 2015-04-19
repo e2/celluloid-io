@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 gemspec development_group: :gem_build_tools
 
 group :development do
-  gem 'benchmark_suite'
   gem 'guard-rspec'
   gem 'rb-fsevent', '~> 0.9.1' if RUBY_PLATFORM =~ /darwin/
 end
