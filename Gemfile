@@ -17,4 +17,8 @@ group :test do
 end
 
 gem 'coveralls', require: false
-gem 'celluloid', github: 'celluloid/celluloid', branch: '0.17.0-prerelease'
+
+gem 'celluloid',             github: 'celluloid/celluloid',             branch: '0.17.0-prerelease'
+gem 'celluloid-pool',        github: 'celluloid/celluloid-pool',        branch: 'master'
+gem 'celluloid-fsm',         github: 'celluloid/celluloid-fsm',         branch: 'master'
+gem 'celluloid-supervision', github: 'celluloid/celluloid-supervision', branch: 'master'
